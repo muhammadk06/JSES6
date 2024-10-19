@@ -1,16 +1,29 @@
-let nam = ()=> {
-let name = document.getElementById("nm").value
-document.getElementById("mesge").innerHTML = "Have A Happy New Year " + name
-document.getElementById("pic").src = "d.jpeg"
-document.getElementById("bd").style.backgroundImage = "url(bg.gif)"
+class movie{
+    constructor(title, director, year){
+        this.title = title;
+        this.director = director;
+        this.year = year;
+    }
 }
 
-document.getElementById("cl").addEventListener("click", nam);
+addMovieToList = (movie)=> {
+const list = document.getElementById('dat');
+const row = document.createElement('tr');
+row.innerHTML = "<td>" + movie.title + "</td> <td>" + movie.director + "</td> <td>" + movie.year + "</td>"
+list.appendChild(row)
 
-let hal = () => {
-let name = document.getElementById("nm").value
-document.getElementById("mesge").innerHTML = "Have a Happy Halloween " + name
-document.getElementById("pic").src = "hal.jpeg"
-document.getElementById("bd").style.backgroundImage = "url(halloween.gif)"
 }
-document.getElementById("hal").addEventListener("click", hal);
+
+document.querySelector('#for').addEventListener("submit", addAMovie )
+
+function addAMovie(e){
+    e.preventDefault()
+    const title = document.querySelector("#movT").value
+    const director = document.querySelector("#dir").value
+    const year = document.querySelector("#yr").value
+    const Movie = new movie(title,director,year)
+    addMovieToList(Movie)
+    document.querySelector("#movT").value = ""
+    document.querySelector("#dir").value = ""
+    document.querySelector("#yr").value = ""
+}
